@@ -51,7 +51,7 @@ for key, value in dict.items():
     print(f"MPAN: {key}, Total Consumption: {total}")
 
 #4. On which day of the week is consumption very high? (for every meter)
-
+days={0: "Monday", 1:"Tuesday", 2:"Wednesday", 3:"Thursday", 4:"Friday", 5:"Saturday", 6:"Sunday"}
 #Going through each day of the week and finding power consumption
 for key, value in dict.items():
     print(f"\nMPAN: {key}")
@@ -66,14 +66,16 @@ for key, value in dict.items():
         temp=value[value['consumptionday']==i]
         #print(temp)
         temp['consumption'].apply(sums)
-        print(f"Day of Week: {i}, Total Consumption: {total}")
+        print(f"Day of Week: {days[i]}, Total Consumption: {total}")
         day_power[i]=total
-    print(f"Day of the Week with Most Consumption is {max(day_power, key=day_power.get)}")
+    print(f"Day of the Week with Most Consumption is {days[max(day_power, key=day_power.get)]}")
 
 #5. What is the monthly consumption  each meter ?  (Take 2024 data) 
 #6. Take particular year from the data, and then find for each meter which month energy consumption is very high   
 
 #Nearly the same as 4
+months={1:"January", 2:"February", 3:"March", 4:"April", 5:"May", 6:"June",
+        7:"July", 8:"August", 9:"September", 10:"October", 11:"November", 12:"December"}
 for key, value in dict.items():
     print(f"\nMPAN: {key}")
     #value['consumptiondate']=pd.to_datetime(value['consumptiondate'])
@@ -86,6 +88,6 @@ for key, value in dict.items():
         temp=value[value['consumptionyear']==2024]
         temp=temp[temp['consumptionmonth']==i]
         temp['consumption'].apply(sums)
-        print(f"Month: {i}, Total Consumption: {total}")
+        print(f"Month: {months[i]}, Total Consumption: {total}")
         month_power[i]=total
-    print(f"Month with Most Consumption is {max(month_power, key=month_power.get)}") 
+    print(f"Month with Most Consumption is {months[max(month_power, key=month_power.get)]}") 
